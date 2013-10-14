@@ -11,7 +11,46 @@
 #
 # It's strongly recommended that you check this file into your version control system.
 
-ActiveRecord::Schema.define(version: 20131009034344) do
+ActiveRecord::Schema.define(version: 20131013211952) do
+
+  create_table "answers", force: true do |t|
+    t.string   "text"
+    t.integer  "city_id"
+    t.integer  "turn_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "cities", force: true do |t|
+    t.string   "name"
+    t.integer  "user_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "problems", force: true do |t|
+    t.string   "text"
+    t.integer  "turn_id"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "results", force: true do |t|
+    t.integer  "answer_id"
+    t.text     "characteristics"
+    t.float    "delta_pollution"
+    t.float    "delta_public_support"
+    t.float    "delta_corporate_support"
+    t.float    "delta_balance"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
+
+  create_table "turns", force: true do |t|
+    t.datetime "ends_at"
+    t.datetime "created_at"
+    t.datetime "updated_at"
+  end
 
   create_table "users", force: true do |t|
     t.string   "email",                  default: "", null: false
