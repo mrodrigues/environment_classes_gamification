@@ -3,6 +3,6 @@
 FactoryGirl.define do
   factory :city do
     name "MyString"
-    user_id 1
+    user
   end
 end
