@@ -33,7 +33,7 @@ describe ProblemsController do
   let(:valid_session) { {} }
 
   describe "GET index" do
-    it "assigns all problems as @problems", wip: true do
+    it "assigns all problems as @problems" do
       problem = Problem.create! valid_attributes
       get :index, {}, valid_session
       assigns(:problems).should eq([problem])

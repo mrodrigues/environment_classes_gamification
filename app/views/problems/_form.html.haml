@@ -2,7 +2,8 @@
   = f.error_notification
 
   .form-inputs
-    = f.input :text
+    = f.input :text, as: :text
+    = f.input :ends_at
 
   .form-actions
     = f.button :submit

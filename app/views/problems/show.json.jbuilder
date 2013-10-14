@@ -1,1 +1,1 @@
-json.extract! @problem, :text, :created_at, :updated_at
+json.extract! @problem, :text, :ends_at, :created_at, :updated_at

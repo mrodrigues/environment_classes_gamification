@@ -3,6 +3,9 @@
 %p
   %b Text:
   = @problem.text
+%p
+  %b Ends at:
+  = @problem.ends_at
 
 = link_to 'Edit', edit_problem_path(@problem)
 \|

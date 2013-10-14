@@ -3,6 +3,7 @@
 %table
   %tr
     %th Text
+    %th Ends at
     %th
     %th
     %th
@@ -10,6 +11,7 @@
   - @problems.each do |problem|
     %tr
       %td= problem.text
+      %td= problem.ends_at
       %td= link_to 'Show', problem
       %td= link_to 'Edit', edit_problem_path(problem)
       %td= link_to 'Destroy', problem, :method => :delete, :data => { :confirm => 'Are you sure?' }
