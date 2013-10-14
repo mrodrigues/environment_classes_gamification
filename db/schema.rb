@@ -16,7 +16,7 @@ ActiveRecord::Schema.define(version: 20131014013945) do
   create_table "answers", force: true do |t|
     t.string   "text"
     t.integer  "city_id"
-    t.integer  "turn_id"
+    t.integer  "problem_id"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -30,7 +30,7 @@ ActiveRecord::Schema.define(version: 20131014013945) do
 
   create_table "problems", force: true do |t|
     t.string   "text"
-    t.integer  "turn_id"
+    t.datetime "ends_at"
     t.datetime "created_at"
     t.datetime "updated_at"
   end
@@ -46,12 +46,6 @@ ActiveRecord::Schema.define(version: 20131014013945) do
     t.datetime "updated_at"
     t.string   "text"
     t.boolean  "valid_answer"
-  end
-
-  create_table "turns", force: true do |t|
-    t.datetime "ends_at"
-    t.datetime "created_at"
-    t.datetime "updated_at"
   end
 
   create_table "users", force: true do |t|

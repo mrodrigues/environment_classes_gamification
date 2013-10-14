@@ -3,7 +3,7 @@ class ResultsCalculator
   def initialize(city, ends_at = DateTime.current)
     @results = city
       .answers
-      .select{|answer| answer.turn.ends_at <= ends_at }
+      .select{|answer| answer.problem.ends_at <= ends_at }
       .map(&:result)
   end
 

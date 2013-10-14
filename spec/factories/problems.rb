@@ -2,7 +2,5 @@
 
 FactoryGirl.define do
   factory :problem do
-    text "MyString"
-    turn_id 1
   end
 end

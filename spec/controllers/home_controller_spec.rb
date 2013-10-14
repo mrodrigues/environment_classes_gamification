@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 describe HomeController do
+  before { login }
 
   describe "GET 'index'" do
     it "should be successful" do

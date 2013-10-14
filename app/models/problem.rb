@@ -1,3 +1,3 @@
 class Problem < ActiveRecord::Base
-  belongs_to :turn
+  has_many :answers
 end

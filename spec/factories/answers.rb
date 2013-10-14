@@ -2,8 +2,5 @@
 
 FactoryGirl.define do
   factory :answer do
-    text "MyString"
-    city_id 1
-    turn_id 1
   end
 end
