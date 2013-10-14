@@ -12,7 +12,7 @@ describe ResultsCalculator do
     results_calculator.characteristics.should == []
   end
 
-  it "should add characteristics", wip: true do
+  it "should add characteristics" do
     characteristics = ["one thing", "another thing"]
     characteristics.each_with_index do |characteristic, index|
       problem = FactoryGirl.create :problem, ends_at: index.weeks.ago
