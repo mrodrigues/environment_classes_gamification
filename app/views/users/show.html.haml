@@ -1,5 +1,17 @@
-%h3 User
+%h2 User
 %p
   User: #{@user.name}
 %p
   Email: #{@user.email if @user.email}
+
+- if @problem.nil?
+  %h3 Não há um problema no momento
+- else
+  %h3 Problema atual
+  %p= @problem.text
+  - if @answer.nil?
+    = link_to 'Responder', new_problem_answer_path(@problem), class: 'btn'
+  - else
+    %h4 Sua resposta
+    %p= @answer.text
+    = link_to 'Editar resposta', edit_problem_answer_path(@problem, @answer), class: 'btn'

@@ -27,8 +27,7 @@ describe User do
       valid_email_user.should be_valid
     end
   end
-
-  it "should reject invalid email addresses" do
+it "should reject invalid email addresses" do
     addresses = %w[user@foo,com user_at_foo.org example.user@foo.]
     addresses.each do |address|
       invalid_email_user = User.new(@attr.merge(:email => address))
@@ -98,6 +97,30 @@ describe User do
       @user.encrypted_password.should_not be_blank
     end
 
+  end
+
+  describe "#answer_for" do
+    let(:user) { city.user }
+    let(:problem) { FactoryGirl.create(:problem) }
+    let(:city) { FactoryGirl.create(:city) }
+
+    it "should return nil if the problem is nil" do
+      user.answer_for(nil).should be_nil
+    end
+
+    it "should return nil if there's no answer for the problem" do
+      user.answer_for(problem).should be_nil
+    end
+
+    it "should return nil if there's only other user's answers for the problem" do
+      another_user_answer = FactoryGirl.create :answer, problem: problem
+      user.answer_for(problem).should be_nil
+    end
+
+    it "should return the user's answer" do
+      user_answer = FactoryGirl.create :answer, problem: problem, city: city
+      user.answer_for(problem).should == user_answer
+    end
   end
 
 end

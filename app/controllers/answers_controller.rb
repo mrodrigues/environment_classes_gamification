@@ -27,6 +27,7 @@ class AnswersController < ApplicationController
   def create
     @answer = Answer.new(answer_params)
     @answer.problem = @problem
+    @answer.city = current_user.city
 
     respond_to do |format|
       if @answer.save
