@@ -2,5 +2,7 @@
 
 FactoryGirl.define do
   factory :answer do
+    city
+    problem
   end
 end

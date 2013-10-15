@@ -1,0 +1,27 @@
+%p#notice= notice
+
+%p
+  %b Characteristics:
+  = @result.characteristics
+%p
+  %b Delta pollution:
+  = @result.delta_pollution
+%p
+  %b Delta public support:
+  = @result.delta_public_support
+%p
+  %b Delta corporate support:
+  = @result.delta_corporate_support
+%p
+  %b Delta balance:
+  = @result.delta_balance
+%p
+  %b Text:
+  = @result.text
+%p
+  %b Valid answer:
+  = @result.valid_answer
+
+= link_to 'Edit', edit_result_path(@result)
+\|
+= link_to 'Back', results_path

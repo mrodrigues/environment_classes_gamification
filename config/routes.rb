@@ -5,4 +5,5 @@ EnvironmentClassesGamification::Application.routes.draw do
   resources :problems do
     resources :answers
   end
+  resources :results
 end

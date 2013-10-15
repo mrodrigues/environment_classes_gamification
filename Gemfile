@@ -33,6 +33,7 @@ group :development, :test do
   gem 'pry-rails'
   gem 'pry-debugger'
   gem 'pry-stack_explorer'
+  gem 'faker'
 end
 group :production do
   gem 'thin'

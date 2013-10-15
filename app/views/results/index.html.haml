@@ -1,0 +1,31 @@
+%h1 Listing results
+
+%table
+  %tr
+    %th Characteristics
+    %th Delta pollution
+    %th Delta public support
+    %th Delta corporate support
+    %th Delta balance
+    %th Text
+    %th Valid answer
+    %th
+    %th
+    %th
+
+  - @results.each do |result|
+    %tr
+      %td= result.characteristics
+      %td= result.delta_pollution
+      %td= result.delta_public_support
+      %td= result.delta_corporate_support
+      %td= result.delta_balance
+      %td= result.text
+      %td= result.valid_answer
+      %td= link_to 'Show', result
+      %td= link_to 'Edit', edit_result_path(result)
+      %td= link_to 'Destroy', result, :method => :delete, :data => { :confirm => 'Are you sure?' }
+
+%br
+
+= link_to 'New Result', new_result_path
