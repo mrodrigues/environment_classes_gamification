@@ -13,7 +13,7 @@ class UsersController < ApplicationController
               current_user
             end
 
-    @city = @user.city
+    @city = ResultsCalculator.new @user.city
     @problem = Problem.current
     @answer = @user.answer_for(@problem)
     @result = @answer.try :result

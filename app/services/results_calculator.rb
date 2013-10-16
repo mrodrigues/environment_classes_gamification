@@ -2,12 +2,15 @@ class ResultsCalculator
 
   delegate :pollution, :public_support, :corporate_support, :health, 
     :satisfaction, :population, :balance, :characteristics, to: :object
+  delegate :name, to: :@city
 
-  def initialize(city, ends_at = DateTime.current)
-    @results = city
+  def initialize(city, last_problem = Problem.last)
+    @city = city
+    @results = @city
       .answers
-      .select{|answer| answer.problem.ends_at <= ends_at }
+      .select{|answer| answer.problem.ends_at <= last_problem.ends_at }
       .map(&:result)
+      .compact
   end
 
   def object
