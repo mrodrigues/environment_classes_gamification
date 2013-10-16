@@ -6,7 +6,7 @@ class User < ActiveRecord::Base
   has_one :city
 
   def answer_for(problem)
-    return if problem.nil?
+    return if problem.nil? || city.nil?
     city.answers.where(problem_id: problem.id).first
   end
 end

@@ -1,3 +1,5 @@
+#encoding: utf-8
+
 class UsersController < ApplicationController
 
   def index
@@ -14,8 +16,13 @@ class UsersController < ApplicationController
     @city = @user.city
     @problem = Problem.current
     @answer = @user.answer_for(@problem)
+    @result = @answer.try :result
     if @city.nil?
-      redirect_to new_city_path
+      if current_user == @user
+        redirect_to new_city_path
+      else
+        redirect_to root_path, notice: 'Usuário ainda não criou sua cidade'
+      end
     end
   end
 end

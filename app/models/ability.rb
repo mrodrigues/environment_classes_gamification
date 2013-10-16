@@ -9,8 +9,12 @@ class Ability
       can :manage, Result
       can :manage, Problem
     else
-      can :manage, City
-      can :manage, Answer
+      can :manage, City do |city|
+        city.user == user
+      end
+      can :manage, Answer do |answer|
+        answer.city.user == user
+      end
     end
     #
     # The first argument to `can` is the action you are giving the user 

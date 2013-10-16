@@ -10,8 +10,19 @@
   %h3 Problema atual
   %p= @problem.text
   - if @answer.nil?
-    = link_to 'Responder', new_problem_answer_path(@problem), class: 'btn'
+    -if can?(:create, can_answer)
+      = link_to 'Responder', new_problem_answer_path(@problem), class: 'btn'
   - else
     %h4 Sua resposta
     %p= @answer.text
-    = link_to 'Editar resposta', edit_problem_answer_path(@problem, @answer), class: 'btn'
+    - if can?(:update, @answer)
+      = link_to 'Editar resposta', edit_problem_answer_path(@problem, @answer), class: 'btn'
+    - if @result.present?
+      %h4 Resultado
+      %p= @result.text
+      - if @result.characteristics.any?
+        %h5 Características
+        %p= @result.characteristics.join("; ")
+      %ul
+        - [:delta_pollution, :delta_public_support, :delta_corporate_support, :delta_balance].each do |delta|
+          %li #{Result.human_attribute_name(delta)}: #{@result.send(delta)}
