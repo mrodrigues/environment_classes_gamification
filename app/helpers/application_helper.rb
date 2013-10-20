@@ -12,4 +12,16 @@ module ApplicationHelper
     html.html_safe
   end
 
+  def table_for(data, options = {})
+    content_tag :table do
+      content_tag :tbody do
+        data.map do |row|
+          content_tag(:tr) do
+            row.map { |cell| content_tag(:td, cell) }.join.html_safe
+          end
+        end.join.html_safe
+      end
+    end
+  end
+
 end

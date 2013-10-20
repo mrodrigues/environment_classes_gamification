@@ -22,22 +22,21 @@
         - if @result.present?
           %h4 Resultado
           %p= @result.text
-          %ul
-            - [:delta_pollution, :delta_public_support, :delta_corporate_support, :delta_balance].each do |delta|
-              %li #{Result.human_attribute_name(delta)}: #{@result.send(delta)}
+          = table_for [:delta_pollution, :delta_public_support, :delta_corporate_support, 
+            :delta_balance].map {|attr| [Result.human_attribute_name(attr), @result.send(attr)] }
           - if @result.characteristics.any?
             %h5 Características
             %p= @result.characteristics.join("; ")
   - if @city.present?
     .span4
       %h2= @city.name
-      %ul
-        - [:pollution, :public_support, :corporate_support, :health, 
-          :satisfaction, :population, :balance].each do |attribute|
-          %li #{City.human_attribute_name(attribute)}: #{@city.send(attribute)}
-        - if @city.characteristics.any?
-          %h5 Características
-          %p= @city.characteristics.join("; ")
+      = table_for [:pollution, :public_support, :corporate_support, :health, 
+          :satisfaction, :population, :balance].map {|attr| [City.human_attribute_name(attr), @city.send(attr)] }
+      - if @city.characteristics.any?
+        %h5 Características
+        %ul
+          - @city.characteristics.each do |characteristic|
+            %li= characteristic
 
 
 

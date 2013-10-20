@@ -12,8 +12,11 @@ class Ability
       can :manage, City do |city|
         city.user == user
       end
-      can :manage, Answer do |answer|
+      can :create, Answer do |answer|
         answer.city.user == user
+      end
+      can :update, Answer do |answer|
+        answer.result.nil? && answer.city.user == user
       end
     end
     #
