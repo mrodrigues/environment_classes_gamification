@@ -100,9 +100,9 @@ it "should reject invalid email addresses" do
   end
 
   describe "#answer_for" do
-    let(:user) { city.user }
+    let(:user) { FactoryGirl.create(:user) }
     let(:problem) { FactoryGirl.create(:problem) }
-    let(:city) { FactoryGirl.create(:city) }
+    let(:city) { user.city }
 
     it "should return nil if the problem is nil" do
       user.answer_for(nil).should be_nil

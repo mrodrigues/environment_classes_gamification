@@ -6,6 +6,7 @@ FactoryGirl.define do
     email { Faker::Internet.email }
     password 'changeme'
     password_confirmation 'changeme'
+    city
     # required if the Devise Confirmable module is used
     # confirmed_at Time.now
   end
