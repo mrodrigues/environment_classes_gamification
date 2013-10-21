@@ -1,7 +1,10 @@
 class Ability
   include CanCan::Ability
 
+  attr_accessor :user
+
   def initialize(user)
+    @user = user
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
@@ -13,12 +16,18 @@ class Ability
         city.user == user
       end
       can :create, Answer do |answer|
-        answer.city.user == user
+        basic_write_permissions(answer)
       end
       can :update, Answer do |answer|
-        answer.city.user == user &&
+        basic_write_permissions(answer) &&
         (answer.result.nil? || !answer.result.valid_answer)
       end
+    end
+
+    def basic_write_permissions(object)
+      {
+        Answer => lambda { |answer| answer.city.user == user && answer.problem == Problem.current }
+      }[object.class].call(object)
     end
     #
     # The first argument to `can` is the action you are giving the user 
