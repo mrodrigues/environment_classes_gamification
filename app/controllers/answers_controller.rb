@@ -1,6 +1,6 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :set_problem
+  before_action :set_problem, only: [:new, :edit, :update]
 
   # GET /answers
   # GET /answers.json
@@ -26,12 +26,12 @@ class AnswersController < ApplicationController
   # POST /answers.json
   def create
     @answer = Answer.new(answer_params)
-    @answer.problem = @problem
     @answer.city = current_user.city
+    @problem = @answer.problem
 
     respond_to do |format|
       if @answer.save
-        format.html { redirect_to [@problem, @answer], notice: 'Answer was successfully created.' }
+        format.html { redirect_to @answer, notice: 'Answer was successfully created.' }
         format.json { render action: 'show', status: :created, location: @answer }
       else
         format.html { render action: 'new' }
@@ -45,7 +45,11 @@ class AnswersController < ApplicationController
   def update
     respond_to do |format|
       if @answer.update(answer_params)
-        format.html { redirect_to [@problem, @answer], notice: 'Answer was successfully updated.' }
+        result = @answer.result
+        if result.present? && !result.valid_answer
+          result.destroy
+        end
+        format.html { redirect_to root_path, notice: 'Answer was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
@@ -59,7 +63,7 @@ class AnswersController < ApplicationController
   def destroy
     @answer.destroy
     respond_to do |format|
-      format.html { redirect_to problem_answers_url(@problem) }
+      format.html { redirect_to answers_url }
       format.json { head :no_content }
     end
   end
@@ -71,11 +75,11 @@ class AnswersController < ApplicationController
     end
 
     def set_problem
-      @problem = Problem.find(params[:problem_id])
+      @problem = params[:problem_id] ? Problem.find(params[:problem_id]) : @answer.problem
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.
     def answer_params
-      params.require(:answer).permit(:text)
+      params.require(:answer).permit(:text, :problem_id)
     end
 end

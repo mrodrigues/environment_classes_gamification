@@ -24,4 +24,12 @@ module ApplicationHelper
     end
   end
 
+  def list_for(data)
+    content_tag :ul do
+      data.each do |item|
+        concat(content_tag(:li, item))
+      end
+    end
+  end
+
 end

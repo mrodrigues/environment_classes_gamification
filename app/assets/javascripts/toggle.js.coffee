@@ -1,0 +1,7 @@
+jQuery ->
+  $('[type=checkbox][data-toggle]').change ->
+    that = $(this)
+    if that.is(':checked')
+      $(that.attr('data-toggle')).show('fast')
+    else
+      $(that.attr('data-toggle')).hide('fast')

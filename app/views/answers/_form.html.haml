@@ -1,9 +1,10 @@
 %h2= Problem.name
 %p= @problem.text
-= simple_form_for([@problem, @answer]) do |f|
+= simple_form_for(@answer) do |f|
   = f.error_notification
 
   .form-inputs
+    = f.input :problem_id, as: :hidden
     = f.input :text, as: :text
 
   .form-actions

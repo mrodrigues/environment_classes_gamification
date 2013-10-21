@@ -10,9 +10,14 @@ describe Answer do
       ability.should be_able_to :update, answer
     end
 
-    it "should not be able to update an answer with a result" do
-      answer.result = FactoryGirl.create :result, answer: answer
+    it "should not be able to update an answer if the result is a valid answer" do
+      answer.result = FactoryGirl.create :result, valid_answer: true, answer: answer
       ability.should_not be_able_to :update, answer
+    end
+
+    it "should be able to update an answer if the result is a invalid answer" do
+      answer.result = FactoryGirl.create :result, valid_answer: false, answer: answer
+      ability.should be_able_to :update, answer
     end
   end
 end

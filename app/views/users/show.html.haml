@@ -1,6 +1,6 @@
 .row
   .span8
-    %h2 Usuário
+    %h2= User.name
     %p
       Nome: #{@user.name}
     %p
@@ -13,30 +13,32 @@
       %p= @problem.text
       - if @answer.nil?
         -if can?(:create, can_answer)
-          = link_to 'Responder', new_problem_answer_path(@problem), class: 'btn'
+          = link_to 'Responder', new_answer_path(problem_id: @problem), class: 'btn'
       - else
         %h4 Sua resposta
         %p= @answer.text
         - if can?(:update, @answer)
-          = link_to 'Editar resposta', edit_problem_answer_path(@problem, @answer), class: 'btn'
+          = link_to 'Editar resposta', edit_answer_path(@answer), class: 'btn'
         - if @result.present?
-          %h4 Resultado
+          %h4= Result.name
+          - if @result.valid_answer
+            = table_for [:delta_pollution, :delta_public_support, :delta_corporate_support, 
+              :delta_balance].map {|attr| [Result.human_attribute_name(attr), @result.send(attr)] }
+            - if @result.characteristics.any?
+              %h5= City.human_attribute_name(:characteristics)
+              = list_for(@result.characteristics)
+          - else
+            %h3= t(:invalid_answer)
+          %h5= Result.human_attribute_name(:text)
           %p= @result.text
-          = table_for [:delta_pollution, :delta_public_support, :delta_corporate_support, 
-            :delta_balance].map {|attr| [Result.human_attribute_name(attr), @result.send(attr)] }
-          - if @result.characteristics.any?
-            %h5 Características
-            %p= @result.characteristics.join("; ")
   - if @city.present?
     .span4
       %h2= @city.name
       = table_for [:pollution, :public_support, :corporate_support, :health, 
           :satisfaction, :population, :balance].map {|attr| [City.human_attribute_name(attr), @city.send(attr)] }
       - if @city.characteristics.any?
-        %h5 Características
-        %ul
-          - @city.characteristics.each do |characteristic|
-            %li= characteristic
+        %h5= City.human_attribute_name(:characteristics)
+        = list_for(@city.characteristics)
 
 
 

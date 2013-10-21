@@ -16,7 +16,8 @@ class Ability
         answer.city.user == user
       end
       can :update, Answer do |answer|
-        answer.result.nil? && answer.city.user == user
+        answer.city.user == user &&
+        (answer.result.nil? || !answer.result.valid_answer)
       end
     end
     #

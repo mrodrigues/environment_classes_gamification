@@ -10,9 +10,9 @@
   - @answers.each do |answer|
     %tr
       %td= answer.text
-      %td= link_to 'Show', [@problem, answer]
-      %td= link_to 'Edit', edit_problem_answer_path(@problem, answer)
-      %td= link_to 'Destroy', [@problem, answer], :method => :delete, :data => { :confirm => 'Are you sure?' }
+      %td= link_to 'Show', answer
+      %td= link_to 'Edit', edit_answer_path(answer)
+      %td= link_to 'Destroy', answer, :method => :delete, :data => { :confirm => 'Are you sure?' }
 
 %br
 
