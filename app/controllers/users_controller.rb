@@ -27,16 +27,17 @@ class UsersController < ApplicationController
                 current_user
               end
 
-      @city = ResultsCalculator.new @user.city
-      @answer = @user.answer_for(@problem)
-      @result = @answer.try :result
-      if @city.nil?
+      if @user.city.nil?
         if current_user == @user
           redirect_to new_city_path
         else
           redirect_to root_path, notice: 'Usuário ainda não criou sua cidade'
         end
+        return
       end
+      @city = ResultsCalculator.new @user.city
+      @answer = @user.answer_for(@problem)
+      @result = @answer.try :result
     end
 
     def dashboard
