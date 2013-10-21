@@ -1,4 +1,4 @@
-%h1 Listing answers
+%h1 Listando respostas para o problema atual
 
 %ul
   - @answers.each do |answer|
@@ -8,7 +8,7 @@
       .collapse{id: "answer_#{answer.id}"}
         %p= answer.text
         - if answer.result.present?
-          = link_to t(:edit_result), edit_result_path(answer.result), class: 'btn'
+          = link_to t(:edit_model, model: Result.model_name.human), edit_result_path(answer.result), class: 'btn'
         - else
           = link_to t(:give_result), new_result_path(answer_id: answer), class: 'btn'
 

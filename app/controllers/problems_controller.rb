@@ -28,8 +28,7 @@ class ProblemsController < ApplicationController
 
     respond_to do |format|
       if @problem.save
-        format.html { redirect_to @problem, notice: 'Problem was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @problem }
+        format.html { redirect_to root_path, notice: 'O problema foi criado com sucesso.' }
       else
         format.html { render action: 'new' }
         format.json { render json: @problem.errors, status: :unprocessable_entity }
@@ -42,22 +41,12 @@ class ProblemsController < ApplicationController
   def update
     respond_to do |format|
       if @problem.update(problem_params)
-        format.html { redirect_to @problem, notice: 'Problem was successfully updated.' }
+        format.html { redirect_to root_path, notice: 'O problema foi atualizado com sucesso.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @problem.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /problems/1
-  # DELETE /problems/1.json
-  def destroy
-    @problem.destroy
-    respond_to do |format|
-      format.html { redirect_to problems_url }
-      format.json { head :no_content }
     end
   end
 

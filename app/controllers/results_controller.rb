@@ -1,6 +1,7 @@
 class ResultsController < ApplicationController
   before_action :set_result, only: [:create, :show, :edit, :update, :destroy]
   before_action :set_answer, only: [:new, :create, :edit, :update]
+  before_action :set_city, only: [:new, :create, :edit, :update]
 
   # GET /results
   # GET /results.json
@@ -27,8 +28,7 @@ class ResultsController < ApplicationController
   def create
     respond_to do |format|
       if @result.save
-        format.html { redirect_to @result, notice: 'Result was successfully created.' }
-        format.json { render action: 'show', status: :created, location: @result }
+        format.html { redirect_to answers_url(problem_id: @result.answer.problem), notice: 'Result was successfully created.' }
       else
         format.html { render action: 'new' }
         format.json { render json: @result.errors, status: :unprocessable_entity }
@@ -41,22 +41,12 @@ class ResultsController < ApplicationController
   def update
     respond_to do |format|
       if @result.update(result_params)
-        format.html { redirect_to @result, notice: 'Result was successfully updated.' }
+        format.html { redirect_to answers_url(problem_id: @result.answer.problem), notice: 'Result was successfully updated.' }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }
         format.json { render json: @result.errors, status: :unprocessable_entity }
       end
-    end
-  end
-
-  # DELETE /results/1
-  # DELETE /results/1.json
-  def destroy
-    @result.destroy
-    respond_to do |format|
-      format.html { redirect_to results_url }
-      format.json { head :no_content }
     end
   end
 
@@ -73,6 +63,10 @@ class ResultsController < ApplicationController
     def set_answer
       id = params[:answer_id] || @result.try(:answer_id) || set_result.answer_id
       @answer ||= Answer.find(id)
+    end
+
+    def set_city
+      @city = ResultsCalculator.new @answer.city
     end
 
     # Never trust parameters from the scary internet, only allow the white list through.

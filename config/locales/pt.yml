@@ -1,2 +1,208 @@
 pt:
   list_answers: Ver respostas (%{count})
+  back: Voltar
+  show: Mostrar
+  edit_model: Editar %{model}
+  edit: Editar
+  date:
+    abbr_day_names:
+    - Dom
+    - Seg
+    - Ter
+    - Qua
+    - Qui
+    - Sex
+    - Sáb
+    abbr_month_names:
+    -
+    - Jan
+    - Fev
+    - Mar
+    - Abr
+    - Mai
+    - Jun
+    - Jul
+    - Ago
+    - Set
+    - Out
+    - Nov
+    - Dez
+    day_names:
+    - Domingo
+    - Segunda
+    - Terça
+    - Quarta
+    - Quinta
+    - Sexta
+    - Sábado
+    formats:
+      default: '%d/%m/%Y'
+      long: '%d de %B de %Y'
+      short: '%d de %B'
+      day_with_weekday: "%A - %d/%m/%Y"
+      short_day_with_weekday: "%d/%m, %a"
+
+    month_names:
+    -
+    - Janeiro
+    - Fevereiro
+    - Março
+    - Abril
+    - Maio
+    - Junho
+    - Julho
+    - Agosto
+    - Setembro
+    - Outubro
+    - Novembro
+    - Dezembro
+    order:
+    - :day
+    - :month
+    - :year
+  datetime:
+    distance_in_words:
+      about_x_hours:
+        one: 1 hora
+        other: "%{count} horas"
+      about_x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      about_x_years:
+        one: 1 ano
+        other: "%{count} anos"
+      almost_x_years:
+        one: quase 1 ano
+        other: "quase %{count} anos"
+      half_a_minute: meio minuto
+      less_than_x_minutes:
+        one: um minuto
+        other: "%{count} minutos"
+      less_than_x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+      over_x_years:
+        one: mais de 1 ano
+        other: "mais de %{count} anos"
+      x_days:
+        one: 1 dia
+        other: "%{count} dias"
+      x_minutes:
+        one: 1 minuto
+        other: "%{count} minutos"
+      x_months:
+        one: 1 mês
+        other: "%{count} meses"
+      x_seconds:
+        one: 1 segundo
+        other: "%{count} segundos"
+    prompts:
+      day: Dia
+      hour: Hora
+      minute: Minuto
+      month: Mês
+      second: Segundo
+      year: Ano
+  number:
+    currency:
+      format:
+        delimiter: .
+        format: '%u %n'
+        precision: 2
+        separator: ','
+        significant: false
+        strip_insignificant_zeros: false
+        unit: R$
+    format:
+      delimiter: .
+      precision: 3
+      separator: ','
+      significant: false
+      strip_insignificant_zeros: false
+    human:
+      decimal_units:
+        format: '%n %u'
+        units:
+          billion:
+            one: bilhão
+            other: bilhões
+          million:
+            one: milhão
+            other: milhões
+          quadrillion:
+            one: quatrilhão
+            other: quatrilhões
+          thousand: mil
+          trillion:
+            one: trilhão
+            other: trilhões
+          unit: ''
+      format:
+        delimiter: .
+        precision: 2
+        significant: true
+        strip_insignificant_zeros: true
+      storage_units:
+        format: '%n %u'
+        units:
+          byte:
+            one: Byte
+            other: Bytes
+          gb: GB
+          kb: KB
+          mb: MB
+          tb: TB
+    percentage:
+      format:
+        delimiter: .
+    precision:
+      format:
+        delimiter: .
+  support:
+    array:
+      last_word_connector: ' e '
+      two_words_connector: ' e '
+      words_connector: ', '
+  time:
+    am: ''
+    formats:
+      default: '%A, %d de %B de %Y, %H:%M h'
+      long: '%A, %d de %B de %Y, %H:%M h'
+      short: '%d/%m, %H:%M h'
+      month: '%B'
+      w3c: "%Y-%m-%dT%H:%M:%S+00:00"
+      short_day_with_weekday: "%d/%m, %a"
+    pm: ''
+  helpers:
+    select:
+      prompt: Por favor selecione
+    submit:
+      create: "Criar %{model}"
+      submit: "Salvar %{model}"
+      update: "Atualizar %{model}"
+  hint:
+    result:
+      characteristics: Separe as diferentes características utilizando ponto-e-vírgula (;).
+  activerecord:
+    models:
+      user: Usuário
+      problem: Problema
+      answer: Resposta
+      result: Resultado
+      city: Cidade
+    attributes:
+      user:
+        name: Membros do grupo
+        password: Senha
+      problem:
+        text: Texto
+        ends_at: Termina em
+      result:
+        valid_answer: Resposta aprovada?
+        characteristics: Características
+        delta_pollution: Modificador de poluição
+        delta_public_support: Modificador de apoio público
+        delta_corporate_support: Modificador de apoio das empresas
+        delta_balance: Modificador de saldo
+        text: Explicação
+        

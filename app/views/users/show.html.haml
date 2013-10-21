@@ -32,14 +32,7 @@
           %h5= Result.human_attribute_name(:text)
           %p= @result.text
   - if @city.present?
-    .span4
-      %h2= @city.name
-      = table_for [:pollution, :public_support, :corporate_support, :health, 
-          :satisfaction, :population, :balance].map {|attr| [City.human_attribute_name(attr), @city.send(attr)] }
-      - if @city.characteristics.any?
-        %h5= City.human_attribute_name(:characteristics)
-        = list_for(@city.characteristics)
-
+    = render partial: 'cities/show', locals: { city: @city }
 
 
 

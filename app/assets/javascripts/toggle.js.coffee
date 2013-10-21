@@ -1,6 +1,5 @@
 jQuery ->
   toggleCheckbox = ->
-    console.log this
     that = $(this)
     if that.is(':checked')
       $(that.attr('data-toggle')).show('fast')

@@ -1,6 +1,6 @@
 %h1 Painel do Professor
 
-%h2= Problem.name
+%h2= Problem.model_name.human
 - if @problem.present?
   %p= @problem.text
   = link_to t(:edit), edit_problem_path(@problem), class: 'btn'

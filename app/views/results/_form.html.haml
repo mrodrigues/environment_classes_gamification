@@ -1,18 +1,21 @@
-%h2= Problem.name
-%p= @answer.problem.text
-%h2= Answer.name
-%p= @answer.text
-= simple_form_for(@result) do |f|
-  = f.error_notification
+.row
+  .span8
+    %h2= Problem.model_name.human
+    %p= @answer.problem.text
+    %h2= Answer.model_name.human
+    %p= @answer.text
+    = simple_form_for(@result) do |f|
+      = f.error_notification
 
-  .form-inputs
-    = f.input :answer_id, as: :hidden
-    = f.input :valid_answer, input_html: { 'data-toggle' => '#valid-answer' }
-    #valid-answer
-      = f.input :characteristics, hint: t('hint.result.characteristics'), input_html: { value: @result.characteristics.join("; ") }
-      - [:delta_pollution, :delta_public_support, :delta_corporate_support, :delta_balance].each do |delta|
-        = f.input delta, as: :range, input_html: { min: -5, max: 5 }
-    = f.input :text
+      .form-inputs
+        = f.input :answer_id, as: :hidden
+        = f.input :valid_answer, input_html: { 'data-toggle' => '#valid-answer' }
+        #valid-answer
+          = f.input :characteristics, hint: t('hint.result.characteristics'), input_html: { value: @result.characteristics.join("; "), class: 'input-xxlarge' }
+          - [:delta_pollution, :delta_public_support, :delta_corporate_support, :delta_balance].each do |delta|
+            = f.input delta, as: :range, input_html: { min: -5, max: 5 }
+        = f.input :text, as: :text, input_html: { class: 'input-block-level' }
 
-  .form-actions
-    = f.button :submit
+      .form-actions
+        = f.button :submit
+  = render partial: 'cities/show', locals: { city: @city }
