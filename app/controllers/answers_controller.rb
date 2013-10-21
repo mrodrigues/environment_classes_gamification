@@ -1,11 +1,11 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
-  before_action :set_problem, only: [:new, :edit, :update]
+  before_action :set_problem, only: [:index, :new, :edit, :update]
 
   # GET /answers
   # GET /answers.json
   def index
-    @answers = Answer.all
+    @answers = @problem.answers
   end
 
   # GET /answers/1

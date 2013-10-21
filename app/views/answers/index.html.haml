@@ -1,18 +1,16 @@
 %h1 Listing answers
 
-%table
-  %tr
-    %th Text
-    %th
-    %th
-    %th
-
+%ul
   - @answers.each do |answer|
-    %tr
-      %td= answer.text
-      %td= link_to 'Show', answer
-      %td= link_to 'Edit', edit_answer_path(answer)
-      %td= link_to 'Destroy', answer, :method => :delete, :data => { :confirm => 'Are you sure?' }
+    %li
+      = answer.city.name
+      = link_to t(:show), "#answer_#{answer.id}", 'data-toggle' => 'collapse', class: 'btn'
+      .collapse{id: "answer_#{answer.id}"}
+        %p= answer.text
+        - if answer.result.present?
+          = link_to t(:edit_result), edit_result_path(answer.result), class: 'btn'
+        - else
+          = link_to t(:give_result), new_result_path(answer_id: answer), class: 'btn'
 
 %br
 

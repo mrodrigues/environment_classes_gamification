@@ -1,0 +1,9 @@
+%h1 Painel do Professor
+
+%h2= Problem.name
+- if @problem.present?
+  %p= @problem.text
+  = link_to t(:edit), edit_problem_path(@problem), class: 'btn'
+  = link_to t(:list_answers, count: @problem.answers.count), answers_path(problem_id: @problem)
+- else
+  = link_to t(:create), new_problem_path, class: 'btn'
