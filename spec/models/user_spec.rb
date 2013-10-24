@@ -122,5 +122,4 @@ it "should reject invalid email addresses" do
       user.answer_for(problem).should == user_answer
     end
   end
-
 end

@@ -2,8 +2,8 @@
 
 %ul
   - @answers.each do |answer|
-    %li
-      = answer.city.name
+    %li.answer
+      %span{ class: "#{answer.result.present? ? 'processed' : 'pendent'}" }= answer.city.name
       = link_to t(:show), "#answer_#{answer.id}", 'data-toggle' => 'collapse', class: 'btn'
       .collapse{id: "answer_#{answer.id}"}
         %p= answer.text
@@ -13,4 +13,4 @@
           = link_to t(:give_result), new_result_path(answer_id: answer), class: 'btn'
 
 %br
-
+= link_to t(:back), root_path

@@ -1,6 +1,6 @@
 # Additional translations at https://github.com/plataformatec/devise/wiki/I18n
 
-en:
+pt:
   devise:
     confirmations:
       confirmed: "Sua conta foi confirmada com sucesso."
@@ -42,8 +42,9 @@ en:
       update_needs_confirmation: "Você atualizou sua conta com sucesso, mas precisamos verificar seu novo endereço de email. Por favor, cheque seu email e clique no link de confirmação para confirmar seu novo endereço de email."
       updated: "Você atualizou sua conta com sucesso."
     sessions:
-      signed_in: "Bem vindo ao sistema."
-      signed_out: "Você saiu do sistema."
+      user:
+        signed_in: "Bem vindo."
+        signed_out: "Você saiu."
     unlocks:
       send_instructions: "Você receberá um email com instruções para desbloqueio em instantes."
       send_paranoid_instructions: "Caso sua conta já exista, Você receberá um email com instruções para desbloqueio em instantes."

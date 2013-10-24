@@ -36,4 +36,22 @@ describe Answer do
       ability.should_not be_able_to :create, answer
     end
   end
+
+  describe "#problem" do
+    let(:problem) { FactoryGirl.create :problem }
+    let(:city) { FactoryGirl.create :city }
+    before do
+      @first_answer = FactoryGirl.create :answer, city: city, problem: problem
+      @second_answer = FactoryGirl.build :answer, city: city, problem: problem
+    end
+
+    it "should not create more than one answer for a problem" do
+      @second_answer.should_not be_valid
+    end
+
+    it "should allow create another answer for a problem if the city is different" do
+      @second_answer.city = FactoryGirl.create :city
+      @second_answer.should be_valid
+    end
+  end
 end

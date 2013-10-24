@@ -1,15 +1,14 @@
 = link_to "Jogo de CMA", root_path, :class => 'brand'
-%ul.nav
-  %li= link_to 'Home', root_path
-  - if user_signed_in?
-    %li
-      = link_to 'Sair', destroy_user_session_path, :method=>'delete'
-  - else
-    %li
-      = link_to 'Entrar', new_user_session_path
+%ul.nav.pull-right
   - if user_signed_in?
     %li
       = link_to 'Editar conta', edit_user_registration_path
   - else
     %li
       = link_to 'Registrar-se', new_user_registration_path
+  - if user_signed_in?
+    %li
+      = link_to 'Sair', destroy_user_session_path, :method=>'delete'
+  - else
+    %li
+      = link_to 'Entrar', new_user_session_path

@@ -28,7 +28,7 @@ class ResultsController < ApplicationController
   def create
     respond_to do |format|
       if @result.save
-        format.html { redirect_to answers_url(problem_id: @result.answer.problem), notice: 'Result was successfully created.' }
+        format.html { redirect_to answers_url(problem_id: @result.answer.problem), notice: I18n.t('notice.success.create', model: Result.model_name.human) }
       else
         format.html { render action: 'new' }
         format.json { render json: @result.errors, status: :unprocessable_entity }
@@ -41,7 +41,7 @@ class ResultsController < ApplicationController
   def update
     respond_to do |format|
       if @result.update(result_params)
-        format.html { redirect_to answers_url(problem_id: @result.answer.problem), notice: 'Result was successfully updated.' }
+        format.html { redirect_to answers_url(problem_id: @result.answer.problem), notice: I18n.t('notice.success.update', model: Result.model_name.human) }
         format.json { head :no_content }
       else
         format.html { render action: 'edit' }

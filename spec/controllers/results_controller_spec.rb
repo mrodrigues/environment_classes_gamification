@@ -31,22 +31,6 @@ describe ResultsController do
   # ResultsController. Be sure to keep this updated too.
   let(:valid_session) { {} }
 
-  describe "GET index" do
-    it "assigns all results as @results" do
-      result = Result.create! valid_attributes
-      get :index, {}, valid_session
-      assigns(:results).should eq([result])
-    end
-  end
-
-  describe "GET show" do
-    it "assigns the requested result as @result" do
-      result = Result.create! valid_attributes
-      get :show, {:id => result.to_param}, valid_session
-      assigns(:result).should eq(result)
-    end
-  end
-
   describe "GET new" do
     it "assigns a new result as @result" do
       get :new, {answer_id: valid_attributes[:answer_id]}, valid_session
@@ -78,7 +62,7 @@ describe ResultsController do
 
       it "redirects to the created result" do
         post :create, {:result => valid_attributes}, valid_session
-        response.should redirect_to(Result.last)
+        response.should redirect_to(answers_url(problem_id: Result.last.answer.problem))
       end
     end
 
@@ -122,7 +106,7 @@ describe ResultsController do
       it "redirects to the result" do
         result = Result.create! valid_attributes
         put :update, {:id => result.to_param, :result => valid_attributes}, valid_session
-        response.should redirect_to(result)
+        response.should redirect_to(answers_url(problem_id: Result.last.answer.problem))
       end
     end
 
@@ -142,21 +126,6 @@ describe ResultsController do
         put :update, {:id => result.to_param, :result => { "characteristics" => "invalid value" }}, valid_session
         response.should render_template("edit")
       end
-    end
-  end
-
-  describe "DELETE destroy" do
-    it "destroys the requested result" do
-      result = Result.create! valid_attributes
-      expect {
-        delete :destroy, {:id => result.to_param}, valid_session
-      }.to change(Result, :count).by(-1)
-    end
-
-    it "redirects to the results list" do
-      result = Result.create! valid_attributes
-      delete :destroy, {:id => result.to_param}, valid_session
-      response.should redirect_to(results_url)
     end
   end
 

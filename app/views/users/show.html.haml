@@ -1,26 +1,24 @@
 .row
   .span8
-    %h2= User.name
+    %h2 Dashboard
     %p
-      Nome: #{@user.name}
-    %p
-      Email: #{@user.email if @user.email}
+      #{User.human_attribute_name(:name)}: #{@user.name}
 
     - if @problem.nil?
-      %h3 Não há um problema no momento
+      %h3 Não há um #{Problem.model_name.human.downcase} no momento
     - else
-      %h3 Problema atual
+      %h3 #{Problem.model_name.human} atual
       %p= @problem.text
       - if @answer.nil?
         -if can?(:create, can_answer)
           = link_to 'Responder', new_answer_path(problem_id: @problem), class: 'btn'
       - else
-        %h4 Sua resposta
+        %h4 Sua #{Answer.model_name.human.downcase}
         %p= @answer.text
         - if can?(:update, @answer)
           = link_to 'Editar resposta', edit_answer_path(@answer), class: 'btn'
         - if @result.present?
-          %h4= Result.name
+          %h4= Result.model_name.human
           - if @result.valid_answer
             = table_for [:delta_pollution, :delta_public_support, :delta_corporate_support, 
               :delta_balance].map {|attr| [Result.human_attribute_name(attr), @result.send(attr)] }

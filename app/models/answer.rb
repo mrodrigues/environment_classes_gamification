@@ -4,5 +4,5 @@ class Answer < ActiveRecord::Base
   has_one :result
 
   validates :city, presence: true
-  validates :problem, presence: true
+  validates :problem, presence: true, uniqueness: { scope: :city }
 end
