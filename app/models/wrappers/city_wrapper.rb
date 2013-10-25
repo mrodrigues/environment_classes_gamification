@@ -19,13 +19,13 @@ class CityWrapper
     # returns the base values instead of the modified ones
     return instance_variable_get "@#{attribute}" if delta_pollution.nil?
     functions = {
-      pollution: ->{ (1 + delta_pollution/100) * @pollution },
-      public_support: ->{ (1 + delta_public_support/100) * @public_support },
-      corporate_support: ->{ (1 + delta_corporate_support/100) * @corporate_support },
-      health: ->{ (1 - pollution/100) * @health },
-      satisfaction: ->{ (1 + (public_support - pollution)/10) * @satisfaction },
-      population: ->{ (1 + (5 + health)/100) * @population },
-      balance: ->{ (1 + (population + satisfaction)/200) * @balance + delta_balance }
+      pollution: ->{ delta_pollution + @pollution },
+      public_support: ->{ 0.5 * delta_public_support + @public_support },
+      corporate_support: ->{ delta_corporate_support + @corporate_support },
+      health: ->{ - pollution / 10 + @health },
+      satisfaction: ->{ (public_support - pollution) / 10 + @satisfaction },
+      population: ->{ (1 + (1 + health)/10) * @population },
+      balance: ->{ (population * satisfaction) / 100 + corporate_support/10 + delta_balance + @balance }
     }
 
     functions[attribute].call

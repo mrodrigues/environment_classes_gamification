@@ -16,13 +16,13 @@ class ResultsCalculator
   def object
     @object ||= begin
       city = CityWrapper.new(
-        pollution: 10,
-        public_support: 10,
-        corporate_support: 10,
-        health: 10,
-        satisfaction: 10,
+        pollution: 0,
+        public_support: 5,
+        corporate_support: 5,
+        health: 0,
+        satisfaction: 5,
         population: 10,
-        balance: 10,
+        balance: 5,
         characteristics: []
       )
 
