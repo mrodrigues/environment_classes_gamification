@@ -1,21 +1,19 @@
 class AnswersController < ApplicationController
   before_action :set_answer, only: [:show, :edit, :update, :destroy]
   before_action :set_problem, only: [:index, :new, :edit, :update]
+  load_and_authorize_resource except: [:index, :new, :create]
 
   # GET /answers
   # GET /answers.json
   def index
     @answers = @problem.answers
-  end
-
-  # GET /answers/1
-  # GET /answers/1.json
-  def show
+    authorize! :index, Answer
   end
 
   # GET /answers/new
   def new
-    @answer = Answer.new(problem: @problem)
+    @answer = Answer.new(city: current_user.city, problem: @problem)
+    authorize! :new, @answer
   end
 
   # GET /answers/1/edit
@@ -28,6 +26,8 @@ class AnswersController < ApplicationController
     @answer = Answer.new(answer_params)
     @answer.city = current_user.city
     @problem = @answer.problem
+
+    authorize! :create, @answer
 
     respond_to do |format|
       if @answer.save

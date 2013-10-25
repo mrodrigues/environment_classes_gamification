@@ -2,6 +2,7 @@ class ResultsController < ApplicationController
   before_action :set_result, only: [:create, :show, :edit, :update, :destroy]
   before_action :set_answer, only: [:new, :create, :edit, :update]
   before_action :set_city, only: [:new, :create, :edit, :update]
+  load_and_authorize_resource
 
   # GET /results
   # GET /results.json

@@ -1,16 +1,6 @@
 class ProblemsController < ApplicationController
+  load_and_authorize_resource except: :create
   before_action :set_problem, only: [:show, :edit, :update, :destroy]
-
-  # GET /problems
-  # GET /problems.json
-  def index
-    @problems = Problem.all
-  end
-
-  # GET /problems/1
-  # GET /problems/1.json
-  def show
-  end
 
   # GET /problems/new
   def new
@@ -25,6 +15,7 @@ class ProblemsController < ApplicationController
   # POST /problems.json
   def create
     @problem = Problem.new(problem_params)
+    authorize! :create, @problem
 
     respond_to do |format|
       if @problem.save

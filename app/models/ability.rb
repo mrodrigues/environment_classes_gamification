@@ -8,7 +8,9 @@ class Ability
     # Define abilities for the passed in user here. For example:
     #
     #   user ||= User.new # guest user (not logged in)
+    can :read, User
     if user.admin?
+      can :index, Answer
       can :manage, Result
       can :manage, Problem
     else
