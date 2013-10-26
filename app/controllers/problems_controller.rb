@@ -19,7 +19,6 @@ class ProblemsController < ApplicationController
 
     respond_to do |format|
       if @problem.save
-        NotificationMailer.problem_created(@problem).deliver
         format.html { redirect_to root_path, notice: 'O problema foi criado com sucesso.' }
       else
         format.html { render action: 'new' }

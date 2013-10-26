@@ -1,3 +1,6 @@
 Atenção!
-%br
-= link_to "Um novo desafio foi criado", root_url
+
+%p
+  = link_to "Um novo #{Problem.model_name.human.downcase} foi criado.", root_url
+
+%p= @problem.text

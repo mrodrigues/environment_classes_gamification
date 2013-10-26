@@ -15,6 +15,7 @@ gem 'simple_form', '>= 3.0.0.rc'
 gem 'therubyracer', :platform=>:ruby
 gem 'twitter-bootstrap-rails'
 gem 'cancan'
+gem 'rails-observers'
 group :development do
   gem 'better_errors'
   gem 'binding_of_caller', :platforms=>[:mri_19, :mri_20, :rbx]
