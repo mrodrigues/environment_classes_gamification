@@ -6,4 +6,6 @@ EnvironmentClassesGamification::Application.routes.draw do
   resources :answers, only: [:index, :new, :create, :edit, :update]
   resources :results, only: [:new, :create, :edit, :update]
   resources :cities, only: [:new, :create]
+
+  get 'regras' => 'pages#regras'
 end

@@ -1,4 +1,5 @@
 class CitiesController < ApplicationController
+
   def new
     @city = City.new(user: current_user)
     authorize! :new, @city

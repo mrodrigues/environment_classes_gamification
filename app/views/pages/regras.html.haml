@@ -1,0 +1,42 @@
+%h1 Regras
+
+%ul
+  %li Ao se registrar, cada grupo deverá escolher um nome único para sua cidade.
+  %li A professora descreverá um desafio com uma data limite.
+  %li
+    Cada grupo deverá submeter uma resposta 
+    %strong ANTES 
+    da data limite, pois quando esta chegar, começará imediatamente uma nova rodada.
+  %li A professora avaliará as respostas e determinará resultados para cada uma.
+  %li Caso a resposta não seja aprovada, uma nova deverá ser enviada para ser reavaliada. A data limite do desafio se mantém.
+  %li Caso a resposta seja aprovada, o impacto dos resultados poderá ser visto nos atributos da cidade.
+  %li Ao chegar a data limite, professora poderá criar um novo desafio, e uma nova rodada será iniciada.
+
+%h2 Sobre os cálculos dos resultados
+
+%p
+  Cada resposta será avaliada pela professora, e seus impactos serão representados numericamente em certos modificadores.
+  Cada atributo possui um cálculo específico, podendo depender de zero ou mais outros atributos. Segue abaixo o que influencia cada um:
+
+%ul
+  %li
+    %strong Poluição: 
+    É influenciada apenas pelo modificador de poluição, definido pela professora. Quanto maior este valor, maior a quantidade de poluição na cidade.
+  %li
+    %strong Apoio da população:
+    É influenciado apenas pelo modificador de apoio da população, definido pela professora.
+  %li
+    %strong Apoio das empresas:
+    É influenciado apenas pelo modificador de apoio das empresas, definido pela professora.
+  %li
+    %strong Saúde:
+    É influenciada pela poluição.
+  %li
+    %strong Satisfação:
+    É influenciada pelo apoio da população e pela poluição.
+  %li
+    %strong População:
+    É influenciada pela saúde. É expressa em centenas de milhares de habitantes (ex: 5.0 significa 500.000 habitantes).
+  %li
+    %strong Saldo:
+    É influenciado pela população, pela satisfação, pelo apoio das empresas e pelo modificador de saldo, definido pela professora. É expresso em bilhões de reais (ex: 5.0 significa R$5.000.000.000,00).
