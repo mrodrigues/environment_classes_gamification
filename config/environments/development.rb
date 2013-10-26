@@ -15,6 +15,7 @@ EnvironmentClassesGamification::Application.configure do
 
   # Don't care if the mailer can't send.
   config.action_mailer.raise_delivery_errors = false
+  config.action_mailer.delivery_method = :letter_opener
 
   # Print deprecation notices to the Rails logger.
   config.active_support.deprecation = :log
@@ -36,6 +37,7 @@ EnvironmentClassesGamification::Application.configure do
     user_name: ENV["GMAIL_USERNAME"],
     password: ENV["GMAIL_PASSWORD"]
   }
+  config.action_mailer.default_url_options = { :host => 'localhost' }
   # Send email in development mode.
   config.action_mailer.perform_deliveries = true
 
